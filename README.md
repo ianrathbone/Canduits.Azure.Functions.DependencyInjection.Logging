@@ -4,25 +4,37 @@ A working functions logging solution to get around the filtering of ILogger when
 ![Azure Pipeline Build Status](https://ianrathbone.visualstudio.com/Open%20Source/_apis/build/status/Build%20and%20Publish%20Canduits%20Functions%20DI%20Logging%20Package-clone "Azure Pipeline Build Status")
 
 Example usage:
+### Logging in a class
+```C#
+[FunctionName("ExampleFunction")]
+public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]HttpRequest req,
+[Inject] IExampleInterface example, ILogger log)
+{
+    example.DoSomeCoolStuff();
+    return new OkResult();
+}
+```
+
 ### Basic Setup in Startup.cs
 ```C#
 using System;
-using Canduits.Azure.Functions.DependencyInjection;
 using Canduits.Azure.Functions.DependencyInjection.Logging
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
-[assembly: WebJobsStartup(typeof(Startup), "Startup")]
 namespace my.new.function
 {
-    public class Startup : IWebJobsStartup
+    public class Stuff : IStuff
     {
-        public void Configure(IWebJobsBuilder builder)
+		private readonly IFunctionLogger _logger
+
+        public void Stuff(IFunctionLogger logger)
         {
-            builder.Services.AddFunctionLogging();
+            _logger = logger;
         }
+
+		public bool DoSomething()
+		{
+			_logger.LogInformation("Something happened!!");
+		}
     }
 }
 
