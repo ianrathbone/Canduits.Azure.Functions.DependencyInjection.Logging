@@ -13,17 +13,17 @@ namespace my.new.function
 {
     public class Stuff : IStuff
     {
-		private readonly IFunctionLogger _logger
+        private readonly IFunctionLogger _logger;
 
         public void Stuff(IFunctionLogger logger)
         {
             _logger = logger;
         }
 
-		public bool DoSomething()
-		{
-			_logger.LogInformation("Something happened!!");
-		}
+        public bool DoSomething()
+        {
+            _logger.LogInformation("Something happened!!");
+        }
     }
 }
 ```
@@ -32,7 +32,7 @@ namespace my.new.function
 ```C#
 using System;
 using Canduits.Azure.Functions.DependencyInjection;
-using Canduits.Azure.Functions.DependencyInjection.Logging
+using Canduits.Azure.Functions.DependencyInjection.Logging;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Hosting;
 using Microsoft.Extensions.Configuration;
