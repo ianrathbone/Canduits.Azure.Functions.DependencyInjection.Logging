@@ -7,7 +7,7 @@ Example usage:
 ### Function Declaration using a defined interface
 ```C#
 using System;
-using Canduits.Azure.Functions.DependencyInjection.Logging
+using Canduits.Azure.Functions.DependencyInjection.Logging;
 
 namespace my.new.function
 {
