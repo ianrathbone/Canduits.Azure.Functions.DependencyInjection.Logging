@@ -6,6 +6,7 @@ Example usage:
 ```C#
 using System;
 using Canduits.Azure.Functions.DependencyInjection;
+using Canduits.Azure.Functions.DependencyInjection.Logging
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Hosting;
 using Microsoft.Extensions.Configuration;
